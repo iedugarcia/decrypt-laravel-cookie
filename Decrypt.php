@@ -130,8 +130,16 @@ class Decrypt{
      * @return mixed
      */
     public function run($hash){
-        $hash_url_decoded = urldecode($hash);
+        $hashUrlDecoded = urldecode($hash);
 
-        return $this->decrypt($hash_url_decoded);
+        return $this->decrypt($hashUrlDecoded);
+    }
+
+    public function getUserId($hash){
+        $decoded = $this->run($hash);
+
+        list($userId,$token) = explode('|',$decoded);
+
+        return $userId;
     }
 }
